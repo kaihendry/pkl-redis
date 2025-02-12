@@ -10,7 +10,7 @@ jobs:
       - uses: pkl-community/setup-pkl@v0
         with:
            pkl-version: 0.27.2
-      - run: 	pkl eval rl.pkl
+      - run: 	make
       - uses: actions/setup-go@v5
       - run: |
             go install github.com/apple/pkl-go/cmd/pkl-gen-go@latest
