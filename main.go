@@ -8,10 +8,11 @@ import (
 )
 
 func main() {
-	cfg, err := control.LoadFromPath(context.Background(), "rl.pkl")
+	cfg, err := control.LoadFromPath(context.Background(), "config.pkl")
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("Running: %v\n", cfg.Rl.Toggle)
+	fmt.Printf("docker exec redis redis-cli -n 6 SET RL:toggle %s\n", cfg.Rl.Toggle)
+	fmt.Printf("docker exec redis redis-cli -n 6 SET CB:toggle %s\n", cfg.Cb.Toggle)
 }

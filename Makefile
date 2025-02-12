@@ -1,2 +1,2 @@
-json:
-	pkl eval -f json rl.pkl
+eval:
+	pkl eval config.pkl
