@@ -1,0 +1,5 @@
+// docker exec redis redis-cli -n 6 SET RL:toggle SHADOW
+
+rl {
+    toggle = "SHADOW"
+}

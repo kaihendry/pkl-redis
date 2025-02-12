@@ -1,0 +1,15 @@
+module Control
+
+
+rl: Controller?;
+cb: Controller?;
+
+class Controller {
+    toggle: Running;
+}
+
+
+
+typealias Running = "ON"|"OFF"|"SHADOW"
+
+
