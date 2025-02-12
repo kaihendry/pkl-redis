@@ -1,0 +1,11 @@
+name: Run security checks
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - uses: golangci/golangci-lint-action@v6
+      - uses: golang/govulncheck-action@v1
