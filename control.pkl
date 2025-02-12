@@ -1,5 +1,7 @@
+@go.Package { name = "github.com/kaihendry/pkl-redis/gen/control" }
 module Control
 
+import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.0#/go.pkl"
 
 rl: Controller?;
 cb: Controller?;
