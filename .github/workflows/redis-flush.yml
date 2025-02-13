@@ -11,18 +11,18 @@ jobs:
         run: |
             docker exec redis redis-cli -n 6 SET RL:toggle SHADOW
             docker exec redis redis-cli -n 6 SET CB:toggle OFF
-            docker exec redis sh -c 'for key in $(redis-cli -n 6 KEYS "*"); do echo "$key -> $(redis-cli -n 6 GET "$key")"; done'
 
       - name: Display keys and values in DB 6
         run: |
-            echo "Key-Value pairs in DB 6:"
             docker exec redis sh -c 'for key in $(redis-cli -n 6 KEYS "*"); do echo "$key -> $(redis-cli -n 6 GET "$key")"; done'
 
-      - name: Flush DB 6 and verify
+      - name: Flush DB 6
         run: |
             docker exec redis redis-cli -n 6 FLUSHDB
-            echo "After flushing, keys in DB 6:"
-            docker exec redis redis-cli -n 6 KEYS "*"
+
+      - name: Display keys and values in DB 6
+        run: |
+            docker exec redis sh -c 'for key in $(redis-cli -n 6 KEYS "*"); do echo "$key -> $(redis-cli -n 6 GET "$key")"; done'
 
       - run: docker compose logs
         if: ${{ always() }}
