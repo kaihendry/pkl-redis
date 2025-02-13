@@ -10,8 +10,32 @@ class Controller {
     toggle: Running = "OFF";
 }
 
-
-
+/// SHADOW - analyze the traffic, but do not enforce the limits
+/// ON - enforce the limits
 typealias Running = "ON"|"OFF"|"SHADOW"
 
+hidden baseCommand: String = "redis-cli" // could be "docker exec redis redis-cli"
+hidden dbNum: UInt = 6
 
+/// Flatten an object structure down to "key:path"="value" pairs
+function walkKV(val: Map|Mapping|Dynamic|Typed): Mapping<String, Any> = new {
+  for (k, v in val.toMap()) {
+    when (v is Map|Mapping|Dynamic|Typed) {
+      for (k2, v2 in walkKV(v)) {
+        ["\(k):\(k2)"] = v2
+      }
+    } else {
+      // not clear how List|Listing should be handled here, pretend they don't exist
+      [k] = v
+    }
+  }
+}
+
+output {
+  text = new Listing {
+    "#!/bin/bash"
+    for (k, v in walkKV(module)) {
+      "\(baseCommand) -n \(dbNum) SET \(k) '\(v)'"
+    }
+  }.join("\n")
+}
