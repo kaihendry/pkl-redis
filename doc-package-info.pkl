@@ -1,3 +1,4 @@
+/// These are docs
 amends "pkl:DocPackageInfo"
 
 name = "Pickle Redis"

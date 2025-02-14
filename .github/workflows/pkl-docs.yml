@@ -5,10 +5,12 @@ jobs:
   build-and-upload:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v4
-    - name: Setup JBang
-      uses: jbangdev/setup-jbang@main
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '21'
+    - uses: jbangdev/setup-jbang@main
     - run: jbang run --main org.pkl.doc.Main "org.pkl-lang:pkl-doc:0.27.2" control.pkl doc-package-info.pkl -o .out
     - name: setup pages
       uses: actions/configure-pages@v4
