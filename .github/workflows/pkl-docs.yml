@@ -9,9 +9,9 @@ jobs:
     - uses: actions/setup-java@v4
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
-        java-version: '21'
+        java-version: '17'
     - uses: jbangdev/setup-jbang@main
-    - run: jbang run --main org.pkl.doc.Main "org.pkl-lang:pkl-doc:0.27.2" control.pkl doc-package-info.pkl -o .out
+    - run: jbang run --main org.pkl.doc.Main "org.pkl-lang:pkl-doc:0.26.3" control.pkl doc-package-info.pkl -o .out
     - name: setup pages
       uses: actions/configure-pages@v4
     - name: upload artifact
