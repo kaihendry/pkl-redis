@@ -1,0 +1,30 @@
+name: Generate and deploy docs
+# https://pkl-lang.org/main/current/pkl-doc/index.html
+on: [push]
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: Setup JBang
+      uses: jbangdev/setup-jbang@main
+    - run: jbang run --main org.pkl.doc.Main "org.pkl-lang:pkl-doc:0.27.2" control.pkl doc-package-info.pkl -o .out
+    - name: setup pages
+      uses: actions/configure-pages@v4
+    - name: upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: out
+    permissions:
+      contents: write
+  deploy-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - id: deployment
+      name: deploy pages
+      uses: actions/deploy-pages@v4
+    needs: build-and-upload
+    permissions:
+      pages: write
+      id-token: write

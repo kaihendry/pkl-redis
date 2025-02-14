@@ -1,0 +1,9 @@
+amends "pkl:DocPackageInfo"
+
+name = "Pickle Redis"
+
+version = "0.0.1"
+
+importUri = "package://kaihendry.github.com/pkl-redis/"
+
+issueTracker = "https://github.com/kaihendry/pkl-redis/issues"
