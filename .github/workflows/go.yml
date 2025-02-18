@@ -15,4 +15,4 @@ jobs:
       - run: |
             go install github.com/apple/pkl-go/cmd/pkl-gen-go@latest
             pkl-gen-go control.pkl
-            go run .
+            go test
