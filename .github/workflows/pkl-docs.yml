@@ -13,7 +13,7 @@ jobs:
     - uses: jbangdev/setup-jbang@main
     - run: jbang run --main org.pkl.doc.Main "org.pkl-lang:pkl-doc:0.26.3" control.pkl doc-package-info.pkl -o .out
     - name: setup pages
-      uses: actions/configure-pages@v4
+      uses: actions/configure-pages@v5
     - name: upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
