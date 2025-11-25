@@ -11,7 +11,7 @@ jobs:
         with:
            pkl-version: 0.27.2
       - run: 	make
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
       - run: |
             go install github.com/apple/pkl-go/cmd/pkl-gen-go@latest
             pkl-gen-go control.pkl
