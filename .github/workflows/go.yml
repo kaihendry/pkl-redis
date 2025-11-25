@@ -9,8 +9,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pkl-community/setup-pkl@v0
         with:
-           pkl-version: 0.27.2
-      - run: 	make
+           pkl-version: 0.28.2
+      - run: make
       - uses: actions/setup-go@v6
       - run: |
             go install github.com/apple/pkl-go/cmd/pkl-gen-go@latest
