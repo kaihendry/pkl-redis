@@ -5,7 +5,7 @@ jobs:
   pressure-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: docker compose up --wait --detach --quiet-pull
       - name: Set keys in DB 6
         run: |
